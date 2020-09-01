@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>rps</title>
+        <script async>
+            function computerPlay()
+            {
+               let cMove = Math.floor(Math.random() * 3);
+               switch(cMove)
+                {
+                    case 0: console.log("Computer Input: Rock");break;
+                    case 1: console.log("Computer Input: Paper");break;
+                    case 2: console.log("Computer Input: Scissors");break;
+                }
+                return(cMove);
+            }
+            function takeInput()
+            {
+                let userCh = prompt("Enter your choice", "Rock/Paper/Scissors");
+                if(userCh)
+                    userCh = userCh.toLowerCase();
+                else
+                    return("err");
+                switch(userCh)
+                {
+                    case "rock": console.log("Your Input: " + userCh);
+                                return "0";
+                    case "paper": console.log("Your Input: " + userCh);
+                                return "1";
+                    case "scissors":console.log("Your Input: " + userCh);
+                                return "2";
+                    default: return(takeInput());
+                }
+            }
+            function round(playerSelection, computerSelection)
+            {   
+                let selWinner = [
+                                 ["Draw! Rock and Rock", "You Win! Paper beats Rock", "You Lose! Rock beats Scissors"],
+                                 ["You Lose! Paper beats Rock", "Draw! Paper and Paper", "You Win! Scissors beats Paper"],
+                                 ["You Win! Rock beats Scissors", "You Lose! Scissors beats Paper", "Draw! Scissors and Scissors"]
+                                ]
+                console.log(selWinner[computerSelection][playerSelection]);
+            }
+            function game()
+            {
+                for(let i = 1; i <= 5; i++){
+                    playerSelection = takeInput();
+                    if(playerSelection === "err")
+                        continue;
+                    computerSelection = computerPlay();
+                    round(playerSelection, computerSelection)
+                }
+            }
+            setTimeout(game, 4000);
+        </script>
+    </head>
+    <body>
+        <h1>Rock, Paper, Scissors</h1>
+        <p>How to play :</p>
+        <ul>
+            <li>Open console to see the results</li>
+            <li>Just enter your choice Rock/Paper/Scissors in the prompt</li>
+            <li>Reload page to play again</li>
+        </ul>
+    </body>
+</html>
